@@ -13,6 +13,7 @@ public class Stat : MonoBehaviour
     public Color outline2;
     public Color fill2;
     public Color white2;
+
     //public Color pink2;
     private void Start()
     {

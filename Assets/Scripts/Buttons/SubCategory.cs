@@ -18,15 +18,28 @@ public class SubCategory : MonoBehaviour
     public bool isChar;
     public CharItem selectedChar;
     public List<RectTransform> storeContents = new List<RectTransform>();
+    public List<bool> boolCheckList = new List<bool>();
+    public bool isBGsub;
+    #region NORMAL SUB
     public void SelectSub()
     {
         if (mainScript.selectedSub != null)
         {
             mainScript.selectedSub.DeselectSub();
+            mainScript.renderColor.InitSliders(myColor);
         }
         mainScript.selectedSub = this;
+       // Debug.Log(storeContents[mainScript.SelectedStoreInt]);
         Stat.SetContent(mainScript.itemScrollView, storeContents[mainScript.SelectedStoreInt]);
         Stat.ColorSelect(this.gameObject, true);
+        mainScript.UpdateSwitchable(true);
+        mainScript.CheckFlats();
+        if (isBGsub==false)
+        {
+            mainScript.TriggerChecklist(boolCheckList);
+        }
+
+        mainScript.audioManager.playSFX(1);
     }
     public void DeselectSub()
     {
@@ -34,7 +47,22 @@ public class SubCategory : MonoBehaviour
         mainScript.selectedSub = null;
         for (int i = 1; i < storeContents.Count; i++)
         {
-            storeContents[i].gameObject.SetActive(false);
+            if (storeContents[i]!=null)
+            {
+                storeContents[i].gameObject.SetActive(false);
+
+            }
         }
+        mainScript.UpdateSwitchable(true);
     }
+    public void ChangeStore()
+    {
+        Stat.SetContent(mainScript.itemScrollView, storeContents[mainScript.SelectedStoreInt]);
+    }
+    #endregion
+    #region CHECKLIST
+    
+
+
+    #endregion
 }

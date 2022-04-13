@@ -126,7 +126,7 @@ public class ColorStatic : MonoBehaviour
             case 2:
                 Color outline2 = new Color(79f / 255, 60f / 255, 53f / 255);
                 Color outline22 = ColorMultiply(mainColor, outline2, .05f);
-                Color outline23 = ColorLinearBurn(outline22, new Color(103f / 255, 82f / 255, 74f / 255),.20f);
+                Color outline23 = ColorLinearBurn(outline22, new Color(103f / 255, 82f / 255, 74f / 255), .20f);
                 Color outline24 = ColorMultiply(outline23, new Color(203f / 255, 133f / 255, 118f / 255), .20f);
                 outline = ColorMultiply(mainColor, outline24, 1f);
 
@@ -221,6 +221,106 @@ public class ColorStatic : MonoBehaviour
                 highlight = ColorDodge(mainColor, mainColor, .40f);
 
                 shadow = ColorLinearLight(mainColor, outline12, .17f);
+                break;
+            case 13:
+                //wool
+                outline = ColorLinearLight(mainColor, new Color(68f / 255, 38f / 255, 50f / 255), .42f);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .33f);
+
+                shadow = ColorMultiply(mainColor, new Color(246f / 255, 226f / 255, 239f / 255), 1);
+
+                break;
+            case 14:
+                //silk peach
+                outline = ColorLinearLight(mainColor, new Color(127f / 255, 91f / 255, 100f / 255), .72f);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .33f);
+
+                shadow = ColorMultiply(mainColor, new Color(242f / 255, 228f / 255, 255f / 255), 1);
+                break;
+            case 15:
+                //silk powder
+                outline = ColorLinearLight(mainColor, new Color(66f / 255, 99f / 255, 149f / 255), .72f);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .33f);
+
+                shadow = ColorMultiply(mainColor, new Color(242f / 255, 228f / 255, 255f / 255), 1);
+
+                break;
+            case 16:
+                //satin olive
+                outline = ColorMultiply(mainColor, new Color(144f / 255, 172f / 255, 102f / 255), 1);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .48f);
+
+                shadow = ColorMultiply(mainColor, new Color(222f / 255, 225f / 255, 217f / 255), 1);
+                break;
+            case 17:
+                //Satin cherry
+                outline = ColorMultiply(mainColor, new Color(223f / 255, 142f / 255, 138f / 255), 1);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .48f);
+
+                shadow = ColorMultiply(mainColor, new Color(222f / 255, 225f / 255, 217f / 255), 1);
+                break;
+            case 18:
+                //satin violet
+                outline = ColorMultiply(mainColor, new Color(144f / 255, 160f / 255, 220f / 255), 1);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .48f);
+
+                shadow = ColorMultiply(mainColor, new Color(222f / 255, 225f / 255, 217f / 255), 1);
+                break;
+            case 19:
+                //vinyl pink
+                outline = ColorDodge(mainColor, new Color(252f / 255, 69f / 255, 51f / 255), .75f);
+
+                highlight = ColorNormal(mainColor, new Color(151f / 255, 189f / 255, 255f / 255), .76f);
+
+                shadow = ColorLinearLight(mainColor, new Color(34f / 255, 83f / 255, 255f / 255), .13f);
+
+                break;
+            case 20:
+                //vinyl green
+                outline = ColorDodge(mainColor, new Color(48f / 255, 132f / 255, 48f / 255), .82f);
+
+                highlight = ColorNormal(mainColor, new Color(255f / 255, 125f / 255, 217f / 255), .76f);
+
+                shadow = ColorLinearLight(mainColor, new Color(93f / 255, 50f / 255, 255f / 255), .13f);
+
+                break;
+            case 21:
+                //vinyl blue
+                outline = ColorDodge(mainColor, new Color(0f / 255, 34f / 255, 172f / 255), .9f);
+
+                highlight = ColorNormal(mainColor, new Color(255f / 255, 172f / 255, 125f / 255), .76f);
+
+                shadow = ColorLinearLight(mainColor, new Color(231f / 255, 3f / 255, 165f / 255), .13f);
+                break;
+            case 22:
+                //poly green
+                outline = ColorNormal(mainColor, new Color(147f / 255, 147f / 255, 68f / 255), .7f);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .49f);
+
+                shadow = ColorMultiply(mainColor, new Color(246f / 255, 226f / 255, 239f / 255), 1);
+
+                break;
+            case 23:
+                //poly blue
+                outline = ColorNormal(mainColor, new Color(93f / 255, 152f / 255, 180f / 255), .7f);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .49f);
+
+                shadow = ColorMultiply(mainColor, new Color(246f / 255, 226f / 255, 239f / 255), 1);
+                break;
+            case 24:
+                outline = ColorNormal(mainColor, new Color(192f / 255, 107f / 255, 155f / 255), .7f);
+
+                highlight = ColorAdd(mainColor, new Color(253f / 255, 253f / 255, 253f / 255), .49f);
+
+                shadow = ColorMultiply(mainColor, new Color(246f / 255, 226f / 255, 239f / 255), 1);
                 break;
             default:
                 Color outline0 = new Color(121f / 255, 87f / 255, 87f / 255);

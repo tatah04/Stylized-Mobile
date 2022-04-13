@@ -32,6 +32,7 @@ public class CharItem : MonoBehaviour
     public Sprite s13;
     public List<Sprite> flats1 = new List<Sprite>();
     public List<Sprite> flats2 = new List<Sprite>();
+    public int flatNumber;
     //
     //public List<Sprite> flats3 = new List<Sprite>();
 
@@ -44,8 +45,8 @@ public class CharItem : MonoBehaviour
         Color S2;
         Color O2;
         Color etc1;
-        Color etc2;
-        Color etc3;
+        //Color etc2;
+        //Color etc3;
         switch (chartype)
         {
             case Chartype.Eye:
@@ -118,7 +119,7 @@ public class CharItem : MonoBehaviour
                 check(s4, 64);
                 check(s5, 65);
                 check(flats1[0], 66);
-          
+
                 check(s8, 152);
                 check(s9, 153);
                 check(s10, 156);
@@ -158,7 +159,7 @@ public class CharItem : MonoBehaviour
         }
         if (chartype == Chartype.Blush || chartype == Chartype.EyeShadow)
         {
-           // Debug.Log("wtf0");
+            // Debug.Log("wtf0");
             if (mySub.selectedChar == null)
             {
                 Stat.SetAct(this.gameObject, true);
@@ -166,7 +167,7 @@ public class CharItem : MonoBehaviour
                 //Debug.Log("wtf3");
 
             }
-            else if(mySub.selectedChar != null && mySub.selectedChar != this)
+            else if (mySub.selectedChar != null && mySub.selectedChar != this)
             {
                 Stat.SetAct(mySub.selectedChar.gameObject, false);
                 mySub.selectedChar = this;
@@ -178,9 +179,9 @@ public class CharItem : MonoBehaviour
                 Stat.SetAct(mySub.selectedChar.gameObject, false);
                 mySub.selectedChar = null;
 
-               // Debug.Log("wtf2");
+                // Debug.Log("wtf2");
             }
-          
+
 
         }
         else if (chartype != Chartype.Blush || chartype != Chartype.EyeShadow)
@@ -191,10 +192,12 @@ public class CharItem : MonoBehaviour
             }
             mySub.selectedChar = this;
             Stat.SetAct(this.gameObject, true);
-          //  Debug.Log(this.chartype);
+            //  Debug.Log(this.chartype);
 
         }
-        
+
+        mainScript.CheckFlats();
+        mainScript.audioManager.playSFX(1);
 
 
     }
@@ -244,6 +247,99 @@ public class CharItem : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+    public void ScrollFlats()
+    {
+        int flatLayer1;
+        int flatLayer2;
+        //switch (chartype)
+        //{
+        //    case Chartype.Eye:
+        //        flatLayer1 = 174;
+        //        break;
+        //    case Chartype.Lips:
+        //        flatLayer1 = 168;
+        //        break;
+        //    case Chartype.Base:
+        //        flatLayer1 = 162;
+        //        flatLayer2 = 66;
+        //        break;
+        //    default:
+        //        flatLayer1 = 0;
+        //        flatLayer2 = 0;
+        //        break;
+        //}
+        int CurrentFlat = flatNumber - 1;
+        if (CurrentFlat == 4 || (flats1[CurrentFlat + 1] == null && flats2[CurrentFlat + 1] == null))
+        {
+            UpdateFlatNumber();
+            switch (chartype)
+            {
+                case Chartype.Eye:
+                    flatLayer1 = 174;
+                    checkAndActivateFlat(flatLayer1, flats1, 0);
+                    break;
+                case Chartype.Lips:
+                    flatLayer1 = 168;
+                    checkAndActivateFlat(flatLayer1, flats1, 0);
+                    break;
+                case Chartype.Base:
+                    flatLayer1 = 162;
+                    checkAndActivateFlat(flatLayer1, flats1, 0);
+                    flatLayer2 = 66;
+                    checkAndActivateFlat(flatLayer2, flats2, 0);
+                    break;
+                default:
+                    flatLayer1 = 0;
+                    flatLayer2 = 0;
+                    break;
+            }
+        }
+        else if (flats1[CurrentFlat + 1] != null || flats2[CurrentFlat + 1] != null )
+        {
+            switch (chartype)
+            {
+                case Chartype.Eye:
+                    flatLayer1 = 174;
+                    checkAndActivateFlat(flatLayer1, flats1, CurrentFlat + 1);
+                    break;
+                case Chartype.Lips:
+                    flatLayer1 = 168;
+                    checkAndActivateFlat(flatLayer1, flats1, CurrentFlat + 1);
+                    break;
+                case Chartype.Base:
+                    flatLayer1 = 162;
+                    checkAndActivateFlat(flatLayer1, flats1, CurrentFlat + 1);
+                    flatLayer2 = 66;
+                    checkAndActivateFlat(flatLayer2, flats2, CurrentFlat + 1);
+                    break;
+                default:
+                    flatLayer1 = 0;
+                    flatLayer2 = 0;
+                    break;
+            }
+            flatNumber = CurrentFlat + 2;
+        }
+    }
+    public void checkAndActivateFlat(int Mlayer, List<Sprite> flat, int flatNum)
+    {
+        if (flat[flatNum] != null)
+        {
+            mainScript.layers[Mlayer].sprite = flat[flatNum];
+            mainScript.layers[Mlayer].preserveAspect = true;
+            mainScript.layers[Mlayer].gameObject.SetActive(true);
+        }
+        else
+        {
+            mainScript.layers[Mlayer].gameObject.SetActive(false);
+        }
+    }
+    public void UpdateFlatNumber()
+    {
+        if (flats1[0] != null || flats2[0] != null)
+        {
+            flatNumber = 1;
         }
     }
 }
